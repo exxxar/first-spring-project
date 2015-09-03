@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title tiles:fragment="title" th:text="#{page.login.title}">Default Title</title>
+        <link rel="stylesheet" th:href="@{/resources/css/w3.css }" href="resources/css/w3.css" type="text/css"/>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        <script src="resources/js/jquery-2.1.4.min.js"></script>
+        <script src="resources/js/script.js"></script>
+    </head>
+    <style>
+        :focus {
+            outline:none;
+        }
+        .form-center {
+            width:500px;
+            position:relative;
+            margin:0 auto;
+        }
+
+        a:valid {
+            color:white;
+        }
+
+        a {
+            color:white;
+            text-decoration: none;
+            font-size:10pt;
+        }
+
+        .icons-class {
+            text-decoration:none;
+            transition:.5s;
+            margin-left:7px;
+            float:right;
+        }
+
+        .icons-class:hover {
+            color:#86C9FE;
+            transition:.5s;
+        }
+    </style>
+    <body>
+        <div tiles:fragment="content">
+            <div class="w3-container blue form-center w3-card-4 w3-margin-bottom w3-margin-top w3-padding-8">
+                <a href="?mylocale=en" th:text="#{local.en}"></a> | <a href="?mylocale=de" th:text="#{local.de}"></a>
+            </div>
+
+            <div class="w3-image w3-card-4 w3-margin-bottom form-center">
+                <img src="resources/img/workshops-chalkboard.jpg" alt="workShop" style="width:100%;" />
+                <div class="w3-title text-white" th:text="#{page.login.name}"></div>
+            </div>
+
+            <form class="w3-container w3-card-4 form-center w3-padding-8" name="f" th:action="@{/login}" method="post">
+                <div th:if="${param.error}" class="w3-container red" style="width:95%;">    
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}" class="w3-container red" style="width:95%;"> 
+                    You have been logged out.
+                </div>
+
+                <div class="w3-group">      
+                    <input class="w3-input" type="text" style="width:95%" required="true" id="username" name="username"/>
+                    <label class="w3-label" th:text="#{page.login.label.username}"></label>
+                </div>
+                <div class="w3-group">      
+                    <input class="w3-input" type="password" style="width:95%" required="true" id="password" name="password"/>
+                    <label class="w3-label" th:text="#{page.login.label.password}"></label>
+                </div>
+                <button type="submit" class="w3-btn blue" th:text="#{page.login.loginBtn}"></button> 
+                <a th:href="@{/signup}" class="w3-btn white" th:text="#{page.login.regBtn}"></a>
+                <a th:href="@{/forgot}" class="w3-btn white" th:text="#{page.login.forgot}" style="float:right;"></a>
+            </form>
+
+            <div class="w3-container form-center w3-card-4 w3-margin-top w3-padding blue">
+                <a href="" class="fa fa-google-plus-square w3-xxlarge icons-class" ></a>
+                <a href="" class="fa fa-twitter-square w3-xxlarge icons-class" ></a>
+                <a href="" class="fa fa-facebook-square w3-xxlarge icons-class" ></a>
+                <a href="" class="fa fa-git-square w3-xxlarge icons-class" ></a>
+            </div>
+
+        </div>
+    </body>
+</html>
